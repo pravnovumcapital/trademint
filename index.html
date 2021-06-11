@@ -125,11 +125,24 @@ h3 {font-size:16px;}
     <h3>Built for collectors and creators</h3>
     <br><br>
     <div class="input-wrapper">
-      <input type="text" placeholder="your email address">
-      <a href="" class="btn">Sign up for beta launch</a>
+      <form id="myForm">
+        <input type="text" placeholder="your email address">
+        <a onclick="subscribe(event)" class="btn">Sign up for beta launch</a>
+      </form>
     </div>
   </div>
 </div>
 
 </body>
 </html>
+<script>
+function subscribe(event){
+  event.preventDefault();
+  $.post( 'https://www.getdrip.com/forms/779556743/submissions', $('form#myForm').serialize(), function(data) {
+         console.log(data)
+         alert('Thank you!')
+       },
+       'json' // I expect a JSON response
+    );
+}
+</script>
